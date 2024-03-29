@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body class="profile-container">
+    <a href="/logout" class="logout-btn">Log Out</a>
+    <div class="profile-info-container">
+      <h3 class="profile-info"><%= user.fullname %></h3>
+      <div class="pic-div">
+        <img src="" alt="" class="profile-pic" />
+      </div>
+      <h3 class="profile-info">@<%= user.username %></h3>
+      <h3 class="profile-info"><%= user.email %></h3>
+    </div>
+    <div>
+      <form
+        action="/upload"
+        method="post"
+        enctype="multipart/form-data"
+        class="make-post"
+      >
+        <h3 class="post-head">Make a Post</h3>
+        <!-- <input type="text" name="caption" class="post-caption post-field" /> -->
+        <textarea
+          name="caption"
+          rows="4"
+          placeholder="Write a caption"
+          class="post-caption post-field"
+        ></textarea>
+        <input type="file" name="file" class="post-file post-field" />
+        <input type="submit" value="Make Post" class="post-submit post-field" />
+      </form>
+    </div>
+    <h1 class="posts-div-head">Posts</h1>
+    <div class="posts-div">
+      <% user.posts.forEach((post) => { %>
+      <div class="post-div">
+        <img src="/images/uploads/<%= post.post %>" alt="" />
+        <p><%= post.caption %></p>
+      </div>
+      <% }) %>
+    </div>
+  </body>
+</html>
